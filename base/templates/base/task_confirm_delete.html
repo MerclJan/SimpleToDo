@@ -1,0 +1,20 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+<div class="header-bar">
+    <h2>
+        <a href="{% url 'tasks' %}"><i class="fa fa-angle-left" aria-hidden="true"></i>
+        </i>&nbsp;Zpět</a>
+    </h2>
+</div>
+<div class="card-body">
+    <form method="POST">
+
+        {% csrf_token %}
+        
+        <p>Opravdu chcete smazat tento úkol? "{{task}}"</p>
+        <input class="button" type="submit" value="Ano, smazat!"/>
+    </form>
+</div>
+
+{% endblock content %}

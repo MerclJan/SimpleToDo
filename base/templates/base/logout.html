@@ -1,0 +1,20 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+<div class="header-bar">
+    <h1>Odhlášení proběhlo úspěšně</h1>
+</div>
+<div class="card-body">
+    <br>
+    <div class="home-log-reg">
+        <button style="margin: 10px;" class="button" onclick="document.location={% url 'login' %}">Znovu přihlásit</button>
+    </div>
+    <br>
+    <br>
+    <div style="text-align: center;">
+        <p>Nemáte účet? <a href="{% url 'register' %}">Zaregistrujte se!</a></p>
+        <p>Můžete také <a href="{% url 'index' %}">jít na hlavní stránku</a> nebo si přečíst  <a href="https://novinky.cz/">novinky</a>.</p>
+    </div> 
+</div>
+
+{% endblock content %}

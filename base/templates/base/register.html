@@ -1,0 +1,29 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+<div class="header-bar">
+    <h1>Register</h1>
+</div>
+<div class="card-body">
+    <form method="POST">
+        {% csrf_token %}
+        <label>Uživatelské jméno</label>
+        {{form.username}}
+        <label>Heslo</label>
+        {{form.password1}}
+        <p>Zadejte heslo, které splňuje následující požadavky:</p>
+        <ul>
+            <li>Obsahuje alespoň 8 znaků.</li>
+            <li>Obsahuje alespoň jedno velké písmeno.</li>
+            <li>Obsahuje alespoň jedno malé písmeno.</li>
+            <li>Obsahuje alespoň jedno číslo.</li>
+            <li>Obsahuje alespoň jeden speciální znak.</li>
+        </ul>
+        <label>Potvrzení hesla</label>
+        {{form.password2}}
+        <input style="margin-top: 10px;" class="button" type="submit" value="Registrovat">
+    </form>
+    <p> Již máte účet? <a href="{% url 'login' %}">Přihlašte se!</a></p>
+</div>
+
+{% endblock content %}

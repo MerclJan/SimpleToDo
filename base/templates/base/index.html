@@ -1,0 +1,26 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+    <body> 
+        <div class="header-bar">
+            <div>
+                <h1>Simple To-Do</h1>   
+            </div>
+        </div>
+        <div class="moto">
+            Díky aplikaci<br>
+            <strong>Simple To-Do</strong><br>
+            na nic nezapomente!
+        </div>
+        <div class="home-log-reg">
+            <button style="margin: 10px;" class="button" onclick="document.location={% url 'login' %}">Přihlásit</button>
+            <button style="margin: 10px;" class="button" onclick="document.location={% url 'register' %}">Zaregistrovat</button>
+        </div>
+        <div class="home-about">
+            Webová aplikace Simple To-Do vznikla jako vzorový projekt.<br>
+            Za případné škody vzniklé vypnutím serveru, smazáním dat nebo účtů autor nenese žádnou zodpovědnost<br>
+            Vytvořil Jan Mercl.<br>     
+        </div>
+    </body>
+
+{% endblock %}

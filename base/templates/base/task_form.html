@@ -1,0 +1,30 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+<div class="header-bar">
+    <h2>
+        <a href="{% url 'tasks' %}"><i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;Zpět</a>
+    </h2>
+</div>
+<div class="card-body">
+    <form method="POST" action="">
+
+        {% csrf_token %}
+
+        <label>Název úkolu</label>
+
+        {{form.title}}
+
+        <label style="margin-top: 10px;">Detaily úkolu</label>
+
+        {{form.description}}
+
+        <label style="margin-bottom: 4px; margin-top: 10px;">Splněno</label>
+
+        {{form.complete}}
+        
+        <input style="margin-top: 12px;" class="button" type="submit" value="Uložit úkol">
+    </form>
+</div>
+
+{% endblock content %}

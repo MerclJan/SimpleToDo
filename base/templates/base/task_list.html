@@ -1,0 +1,72 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+    <div class="header-bar">
+        <div>
+            <h1>To - Do uživatele {{request.user|title}}</h1>
+            <h3 style="margin:0">Počet nesplněných úkolů: {{count}}</h3>
+        </div>
+        <div>
+
+            {% if request.user.is_authenticated %}
+
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button class="button" type="submit">Odhlásit se</button>
+            </form>
+
+            {% else %}
+
+                <a href="{% url 'login' %}">Login</a>
+
+            {% endif %}
+            
+        </div>
+    </div>
+    <div id="search-add-wrapper">
+        <form method="GET" style="display: flex;">
+            <input type="text" name="search-area" value="{{search_input}}">&nbsp;<input type="submit" value="Hledat" class="button">
+        </form>
+        <div>
+            <a id="add-link" href="{% url 'task-create' %}"><button class="button" type="button">+&nbsp;přidat&nbsp;úkol</button></a>
+        </div>
+    </div>
+    <div class="task-items-wrapper">
+
+        {% for task in tasks %}
+
+            <div class="task-wrapper">
+
+                {% if task.complete %}
+
+                    <div class="task-title">
+                        <i style="color: rgba(0, 128, 0, 0.6);" class="fa fa-check-circle" aria-hidden="true"></i>
+                        <i><s><a href="{% url 'task-update' task.id %}">{{ task }}</a></s></i>
+                    </div>
+                    <a class="delete-link" href="{% url 'task-delete' task.id %}">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </a>
+
+                {% else %}
+
+                <div class="task-title">                    
+                    <i style="color: rgba(255, 166, 0, 0.8);" class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                    <a href="{% url 'task-update' task.id %}">{{ task }}</a>
+                </div>
+                <a class="delete-link" href="{% url 'task-delete' task.id %}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+
+                {% endif %}
+
+            </div>
+
+        {% empty %}
+
+        <div class="card-body">
+            <h3>Žádný úkol zatím nebyl přidán.</h3>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+{% endblock content %}
